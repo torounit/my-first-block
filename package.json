@@ -1,0 +1,14 @@
+{
+    "name": "my-first-block",
+    "version": "0.0.1",
+    "license": "GPL2.0+",
+    "main": "build/index.js",
+    "devDependencies": {
+        "@wordpress/scripts": "^5.0.0"
+    },
+    "scripts": {
+        "start": "wp-scripts start",
+        "build": "wp-scripts build",
+        "env": "wp-scripts env"
+    }
+}
