@@ -1,20 +1,14 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { useSelect } from '@wordpress/data';
+import { ServerSideRender } from '@wordpress/components';
 
-export const useCurrentUser = () => {
-	return useSelect( ( select ) => {
-		return select( 'core' ).getCurrentUser();
-	} );
-};
-
-const edit = ( { className } ) => {
-	const { name } = useCurrentUser();
-	return (
-		<div className={ className }>
-			Hello  { name } !!
-		</div>
-	);
-};
+const edit = ( { className } ) => (
+	<ServerSideRender
+		block="my-first-block/hello"
+		attributes={ {
+			className,
+		} }
+	/>
+);
 
 const save = () => null;
 
