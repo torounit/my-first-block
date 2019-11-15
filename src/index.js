@@ -1,12 +1,33 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { TextControl } from '@wordpress/components';
+
+const edit = ( { className, attributes: { text }, setAttributes } ) => {
+	const onChange = ( value ) => { return setAttributes( { text: value } ); };
+	return (
+		<div className={ className }>
+			<TextControl value={ text } onChange={ onChange } />
+		</div>
+	);
+};
+
+const save = ( { className, attributes: { text } } ) => {
+	return (
+		<div className={ className }>
+			<span>{ text }</span>
+		</div>
+	);
+};
+
 registerBlockType( 'my-first-block/hello', {
 	title: 'hello',
 	icon: 'palmtree',
 	category: 'common',
-	edit( { className } ) {
-		return ( <div className={ className }>エディターだよ。</div> );
+	attributes: {
+		text: {
+			type: 'string',
+			default: ''
+		},
 	},
-	save( { className } ) {
-		return ( <div className={ className }>保存されるデータ、実際に表示されるテキスト。</div> );
-	},
+	edit,
+	save,
 } );
