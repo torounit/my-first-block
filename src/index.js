@@ -1,26 +1,37 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { RichText, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { RichText, InspectorControls, BlockControls } from '@wordpress/block-editor';
+import { PanelBody, SelectControl, Toolbar } from '@wordpress/components';
 
-const edit = ( { className, attributes: { text, foo }, setAttributes } ) => {
+const edit = ( { className, attributes: { text, lightbulb, carrot }, setAttributes } ) => {
 	const onChange = ( value ) => setAttributes( { text: value } );
-	const onChangeFoo = ( value ) => setAttributes( { foo: value } );
+	const onChangeLightblub = ( value ) => setAttributes( { lightbulb: value } );
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody>
+				<PanelBody title="Lightbulb" icon="lightbulb" initialOpen={ true }>
 					<SelectControl
-						label="Foo"
-						value={ foo }
+						label="Type"
+						value={ lightbulb }
 						options={ [
 							{ label: 'Alpha', value: 'alpha' },
 							{ label: 'Beta', value: 'beta' },
 							{ label: 'Camma', value: 'gamma' },
 						] }
-						onChange={ onChangeFoo }
+						onChange={ onChangeLightblub }
 					/>
+
 				</PanelBody>
 			</InspectorControls>
+			<BlockControls>
+				<Toolbar controls={ [
+					{
+						icon: 'carrot',
+						title: 'Carrot',
+						isActive: carrot,
+						onClick: () => setAttributes( { carrot: ! carrot } ),
+					},
+				] } />
+			</BlockControls>
 			<div className={ className }>
 				<RichText tagName="div" className="text" value={ text } onChange={ onChange } />
 			</div>
@@ -47,10 +58,14 @@ registerBlockType( 'my-first-block/hello', {
 			selector: '.text',
 			default: '',
 		},
-		foo: {
+		carrot: {
+			type: 'boolean',
+			default: false,
+		},
+		lightbulb: {
 			type: 'string',
 			source: 'meta',
-			meta: 'my_post_hello_foo',
+			meta: 'lightbulb',
 			default: '',
 		},
 	},

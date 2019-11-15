@@ -16,7 +16,7 @@ function my_first_block_register_block() {
 		'editor_script' => 'my-first-block',
 	) );
 
-	register_post_meta( '', 'my_post_hello_foo', array(
+	register_post_meta( '', 'lightbulb', array(
 		'show_in_rest' => true,
 		'single' => true,
 		'type' => 'string',
