@@ -2,9 +2,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { TextControl } from '@wordpress/components';
 
 const edit = ( { className, attributes: { text }, setAttributes } ) => {
-	const onChange = ( value ) => {
-		return setAttributes( { text: value } );
-	};
+	const onChange = ( value ) => setAttributes( { text: value } );
 	return (
 		<div className={ className }>
 			<TextControl value={ text } onChange={ onChange } />
