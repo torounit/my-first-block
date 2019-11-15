@@ -1,23 +1,17 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { useSelect } from '@wordpress/data';
+import { InnerBlocks } from '@wordpress/block-editor';
 
-export const useCurrentUser = () => {
-	return useSelect( ( select ) => {
-		return select( 'core' ).getCurrentUser();
-	} );
-};
+const edit = ( { className } ) => (
+	<div className={ className }>
+		<InnerBlocks />
+	</div>
+);
 
-const edit = ( { className } ) => {
-	const { name } = useCurrentUser();
-	return (
-		<div className={ className }>
-			Hello  { name } !!
-		</div>
-	);
-};
-
-const save = () => null;
-
+const save = ( { className } ) => (
+	<div className={ className }>
+		<InnerBlocks.Content />
+	</div>
+);
 registerBlockType( 'my-first-block/hello', {
 	title: 'hello',
 	icon: 'palmtree',
