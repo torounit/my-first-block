@@ -1,11 +1,11 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { TextControl } from '@wordpress/components';
+import { RichText } from '@wordpress/block-editor';
 
 const edit = ( { className, attributes: { text }, setAttributes } ) => {
 	const onChange = ( value ) => setAttributes( { text: value } );
 	return (
 		<div className={ className }>
-			<TextControl value={ text } onChange={ onChange } />
+			<RichText tagName="div" className="text" value={ text } onChange={ onChange } />
 		</div>
 	);
 };
@@ -13,7 +13,7 @@ const edit = ( { className, attributes: { text }, setAttributes } ) => {
 const save = ( { className, attributes: { text } } ) => {
 	return (
 		<div className={ className }>
-			<div className="text">{ text }</div>
+			<RichText.Content tagName="div" className="text" value={ text } />
 		</div>
 	);
 };
