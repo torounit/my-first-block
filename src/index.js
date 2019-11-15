@@ -1,19 +1,18 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { TextControl } from '@wordpress/components';
+import { InnerBlocks } from '@wordpress/block-editor';
 
-const edit = ( { className, attributes: { text }, setAttributes } ) => {
-	const onChange = ( value ) => { return setAttributes( { text: value } ); };
+const edit = ( { className } ) => {
 	return (
 		<div className={ className }>
-			<TextControl value={ text } onChange={ onChange } />
+			<InnerBlocks allowedBlocks={ [ 'core/code' ] } />
 		</div>
 	);
 };
 
-const save = ( { className, attributes: { text } } ) => {
+const save = ( { className } ) => {
 	return (
 		<div className={ className }>
-			<span>{ text }</span>
+			<InnerBlocks.Content />
 		</div>
 	);
 };
@@ -22,12 +21,6 @@ registerBlockType( 'my-first-block/hello', {
 	title: 'hello',
 	icon: 'palmtree',
 	category: 'common',
-	attributes: {
-		text: {
-			type: 'string',
-			default: ''
-		},
-	},
 	edit,
 	save,
 } );
