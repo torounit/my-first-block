@@ -1,21 +1,17 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { InnerBlocks } from '@wordpress/block-editor';
 
-const edit = ( { className } ) => {
-	return (
-		<div className={ className }>
-			<InnerBlocks allowedBlocks={ [ 'core/code' ] } />
-		</div>
-	);
-};
+const edit = ( { className } ) => (
+	<div className={ className }>
+		<InnerBlocks allowedBlocks={ [ 'core/code' ] } />
+	</div>
+);
 
-const save = ( { className } ) => {
-	return (
-		<div className={ className }>
-			<InnerBlocks.Content />
-		</div>
-	);
-};
+const save = ( { className } ) => (
+	<div className={ className }>
+		<InnerBlocks.Content />
+	</div>
+);
 
 registerBlockType( 'my-first-block/hello', {
 	title: 'hello',
