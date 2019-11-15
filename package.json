@@ -9,6 +9,7 @@
     "scripts": {
         "start": "wp-scripts start",
         "build": "wp-scripts build",
+        "lint-js": "wp-scripts lint-js",
         "env": "wp-scripts env"
     }
 }
