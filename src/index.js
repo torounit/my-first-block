@@ -25,6 +25,8 @@ registerBlockType( 'my-first-block/hello', {
 	attributes: {
 		text: {
 			type: 'string',
+			source: 'html',
+			selector: '.text',
 			default: '',
 		},
 	},
